@@ -1,33 +1,66 @@
-**/dgph
-*.mode1v3
-*.mode2v3
-*.moved-aside
-*.pbxuser
-*.perspectivev3
-**/*sync/
-.sconsign.dblite
-.tags*
-**/.vagrant/
-**/DerivedData/
-Icon?
-**/Pods/
-**/.symlinks/
-profile
-xcuserdata
-**/.generated/
-Flutter/App.framework
-Flutter/Flutter.framework
-Flutter/Flutter.podspec
-Flutter/Generated.xcconfig
-Flutter/ephemeral/
-Flutter/app.flx
-Flutter/app.zip
-Flutter/flutter_assets/
-Flutter/flutter_export_environment.sh
-ServiceDefinitions.json
-Runner/GeneratedPluginRegistrant.*
+# Flutter & Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+.idea/
+.vscode/
+*.iml
+*.lock
 
-# Exceptions to above rules.
+# iOS
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/Flutter/app.flx
+ios/Flutter/app.zip
+ios/Flutter/flutter_assets/
+ios/Flutter/flutter_export_environment.sh
+ios/ServiceDefinitions.json
+ios/Runner/GeneratedPluginRegistrant.*
+ios/.symlinks/
+ios/Pods/
+ios/.generated/
+ios/DerivedData/
+ios/.vagrant/
+ios/profile
+ios/.DS_Store
+ios/*.moved-aside
+ios/*.xcuserstate
+ios/.sconsign.dblite
+ios/*.pbxuser
+ios/*.mode1v3
+ios/*.mode2v3
+ios/*.perspectivev3
+ios/*.xcworkspace
+ios/*.xcuserstate
+ios/xcuserdata/
+ios/xcshareddata/
+ios/.xcworkspace/
+
+# Android
+android/.gradle/
+android/.idea/
+android/.settings/
+android/.local/
+android/local.properties
+android/key.properties
+android/app/key.properties
+android/app/google-services.json
+android/app/google-services-dev.json
+android/app/google-services-prod.json
+android/captures/
+
+# Mac
+.DS_Store
+
+# Others
+*.log
+
+# Exceptions to above rules
 !default.mode1v3
 !default.mode2v3
 !default.pbxuser
