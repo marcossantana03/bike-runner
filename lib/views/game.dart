@@ -31,7 +31,7 @@ class _GameState extends State<Game> with TickerProviderStateMixin {
   late Animation<double> puloAnimacao;
   late AnimationController retornoController;
   late Animation<double> retornoAnimacao;
-
+  bool _animacoesAtivas = true;
   late AnimationController movimentoHorizontalController;
   late Animation<double> movimentoHorizontalAnimacao;
 
@@ -267,24 +267,28 @@ class _GameState extends State<Game> with TickerProviderStateMixin {
   }
 
   Future<void> _iniciarAnimacoes(double largura) async {
-    while (mounted) {
+    while (_animacoesAtivas && mounted) {
       await Future.delayed(const Duration(seconds: 5));
-      if (mounted && !gameController.gameOver && gameController.jogando) {
+      if (!_animacoesAtivas || !mounted) break;
+
+      if (!gameController.gameOver && gameController.jogando) {
         setState(() {
           gameController.mostrarPassaro = true;
           gameController.alturaPassaro = 60 + gameController.random.nextDouble() * 140;
         });
         await passaroController.forward(from: 0);
-        if (mounted) {
+        if (_animacoesAtivas && mounted) {
           setState(() => gameController.mostrarPassaro = false);
         }
       }
 
       await Future.delayed(const Duration(seconds: 3));
-      if (mounted && !gameController.gameOver && gameController.jogando) {
+      if (!_animacoesAtivas || !mounted) break;
+
+      if (!gameController.gameOver && gameController.jogando) {
         setState(() => gameController.mostrarAviao = true);
         await aviaoController.forward(from: 0);
-        if (mounted) {
+        if (_animacoesAtivas && mounted) {
           setState(() => gameController.mostrarAviao = false);
         }
       }
@@ -293,6 +297,7 @@ class _GameState extends State<Game> with TickerProviderStateMixin {
 
   @override
   void dispose() {
+    _animacoesAtivas = false;
     audioController.dispose();
     fundoController.dispose();
     nuvensController.dispose();

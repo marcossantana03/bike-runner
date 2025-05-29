@@ -15,6 +15,7 @@ class Principal extends StatefulWidget {
 class _PrincipalState extends State<Principal> with TickerProviderStateMixin {
   late PrincipalController controlador;
   late final AudioController audioController;
+  bool _animacoesIniciadas = false;
 
   @override
   void initState() {
@@ -28,18 +29,21 @@ class _PrincipalState extends State<Principal> with TickerProviderStateMixin {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    controlador.atualizarLargura(context);
-    controlador.animarElementos(
-      mostrarPassaro: () => setState(() {
-        controlador.mostrarPassaro = true;
-        controlador.alturaPassaro = 60 + controlador.random.nextDouble() * 140;
-      }),
-      esconderPassaro: () => setState(() => controlador.mostrarPassaro = false),
-      mostrarAviao: () => setState(() => controlador.mostrarAviao = true),
-      esconderAviao: () => setState(() => controlador.mostrarAviao = false),
-    );
-  }
 
+    if (!_animacoesIniciadas) {
+      controlador.atualizarLargura(context);
+      controlador.animarElementos(
+        mostrarPassaro: () => setState(() {
+          controlador.mostrarPassaro = true;
+          controlador.alturaPassaro = 60 + controlador.random.nextDouble() * 140;
+        }),
+        esconderPassaro: () => setState(() => controlador.mostrarPassaro = false),
+        mostrarAviao: () => setState(() => controlador.mostrarAviao = true),
+        esconderAviao: () => setState(() => controlador.mostrarAviao = false),
+      );
+      _animacoesIniciadas = true;
+    }
+  }
 
   @override
   void dispose() {

@@ -45,7 +45,7 @@ class GameController {
   }
 
   void aumentarVelocidade() {
-    if (velocidade < 40.0) {
+    if (velocidade < 25.0) {
       velocidade += 1.0;
     }
   }

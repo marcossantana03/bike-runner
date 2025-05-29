@@ -17,6 +17,8 @@ class PrincipalController {
   double alturaPassaro = 100.0;
   final Random random = Random();
 
+  bool _ativo = true;
+
   void iniciarAnimacoes(TickerProvider vsync) {
     controladorFundo = AnimationController(
       vsync: vsync,
@@ -47,13 +49,17 @@ class PrincipalController {
     required VoidCallback mostrarAviao,
     required VoidCallback esconderAviao,
   }) async {
-    while (true) {
+    while (_ativo) {
       await Future.delayed(const Duration(seconds: 5));
+      if (!_ativo) break;
+
       mostrarPassaro();
       await passaroController.forward(from: 0);
       esconderPassaro();
 
       await Future.delayed(const Duration(seconds: 3));
+      if (!_ativo) break;
+
       mostrarAviao();
       await aviaoController.forward(from: 0);
       esconderAviao();
@@ -61,6 +67,7 @@ class PrincipalController {
   }
 
   void dispose() {
+    _ativo = false;
     controladorFundo.dispose();
     passaroController.dispose();
     aviaoController.dispose();
